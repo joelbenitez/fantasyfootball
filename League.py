@@ -114,9 +114,10 @@ if __name__ == '__main__':
         file.write(json.dumps(dudesInWaiver, indent=4))
 
 
-    ##Team information
+    ##Team information, to find your teamID
     #pprint (league.teams())
-    team = yfa.team.Team(sc, '406.l.774934.t.5')
+    teamID = 'YourTeamID'
+    team = yfa.team.Team(sc, teamID)
 #     pprint(team)
 
 #     # ##Dude to add information
