@@ -143,21 +143,3 @@ if __name__ == '__main__':
 
     #print(y)
 
-
-    ###The portion below will post to Slack, use carefully to not bother people
-
-    # #Weebhook URL
-    # Slackurl = "https://hooks.slack.com/services/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"
-
-    # headers = CaseInsensitiveDict()
-    # headers["Content-Type"] = "application/json"
-    # dictstring = str(y)
-    # text = f"Here is the list of eligible RBs on WW with more than 10 percent owned: {dictstring} "
-    # #print (dictstring)
-
-    # data = {"text": text}
-
-    # #print (data)
-    
-    # #POST to Slack
-    # resp = requests.post(Slackurl, headers=headers, data=str(data))
