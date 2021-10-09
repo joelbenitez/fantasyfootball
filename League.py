@@ -27,16 +27,17 @@ import numpy as np
 
 
 if __name__ == '__main__':
-    sc = OAuth2(None, None, from_file='oauth2.json')
-    league = yfa.league.League(sc,'406.l.774934')
+    #To Authenticate
+    # sc = OAuth2(None, None, from_file='oauth2.json')
+    # league = yfa.league.League(sc,'406.l.774934')
 
-    QBFreeAgents = GetFreeAgents(league, "QB")
-    with open("QBFreeAgentSample.json", "w") as file:
-        file.write(json.dumps(QBFreeAgents, indent= 4))
+    # QBFreeAgents = GetFreeAgents(league, "QB")
+    # with open("QBFreeAgentSample.json", "w") as file:
+    #     file.write(json.dumps(QBFreeAgents, indent= 4))
 
-    RBFreeAgents = GetFreeAgents(league, "RB")
-    with open("RBFreeAgentSample.json", "w") as file:
-        file.write(json.dumps(RBFreeAgents, indent= 4))
+    # RBFreeAgents = GetFreeAgents(league, "RB")
+    # with open("RBFreeAgentSample.json", "w") as file:
+    #     file.write(json.dumps(RBFreeAgents, indent= 4))
 
     # FAs = GetFreeAgents(league, "RB")
     # y = []
@@ -91,8 +92,14 @@ if __name__ == '__main__':
     with open ("currentstats.json", "r") as file:    
         df = pd.DataFrame(json.loads(file.read()))
 
-    print(df.Name)
-
+    #print(df[['name', 'Rush Yds', 'Rush TD']].sort_values(by=['Rush Yds'], ascending=False).head(20))
+    #print(df.columns)
+    df['percentCatch'] = (df['Rec']/df['Targets'])
+    df['YdsPerCatch'] = np.divide(df['Rec Yds'],df['Rec'])
+    df = df[df['Targets'] >=20]
+    df = df[df['percentCatch'] >=0.6]
+    print(df[['name', 'Rec', 'Rec Yds','Targets', 'percentCatch','YdsPerCatch']].sort_values(by=['YdsPerCatch'], ascending=False).head(20))
+    
     #print(len(tpList))
 
     # playerID = playerInfo[0]["player_id"]
@@ -124,27 +131,27 @@ if __name__ == '__main__':
     ##Team information, to find your teamID
     #pprint (league.teams())
     #
-    teamID = league.team_key()
-    team = yfa.team.Team(sc, teamID)
-    #pprint(team)
+#     teamID = league.team_key()
+#     team = yfa.team.Team(sc, teamID)
+#     #pprint(team)
 
-#     # ##Dude to add information
-#     playerAdd = "Josh Gordon"
-#     playerInfo = league.player_details(playerAdd)
-#     playerAddID = playerInfo[0]["player_id"]
+# #     # ##Dude to add information
+# #     playerAdd = "Josh Gordon"
+# #     playerInfo = league.player_details(playerAdd)
+# #     playerAddID = playerInfo[0]["player_id"]
 
-#    # ##Dude to drop information
-#     playerDrop = "Van Jefferson Jr."
-#     playerInfo = league.player_details(playerDrop)
-#     playerDropID = playerInfo[0]["player_id"]
+# #    # ##Dude to drop information
+# #     playerDrop = "Van Jefferson Jr."
+# #     playerInfo = league.player_details(playerDrop)
+# #     playerDropID = playerInfo[0]["player_id"]
 
-#     print (playerAddID, playerDropID)
+# #     print (playerAddID, playerDropID)
 
-    #team.add_and_drop_players(playerAddID, playerDropID)
-    # playerID = playerInfo[0]["player_id"]
+#     #team.add_and_drop_players(playerAddID, playerDropID)
+#     # playerID = playerInfo[0]["player_id"]
 
 
-    #My team
-    with open("myteam.json", "w") as file:
-        file.write(json.dumps(team.roster(week=5), indent= 4))
+#     #My team
+#     with open("myteam.json", "w") as file:
+#         file.write(json.dumps(team.roster(week=5), indent= 4))
 
