@@ -96,9 +96,10 @@ if __name__ == '__main__':
     #print(df.columns)
     df['percentCatch'] = (df['Rec']/df['Targets'])
     df['YdsPerCatch'] = np.divide(df['Rec Yds'],df['Rec'])
-    df = df[df['Targets'] >=20]
+    df = df[df['Targets'] >=10]
     df = df[df['percentCatch'] >=0.6]
-    print(df[['name', 'Rec', 'Rec Yds','Targets', 'percentCatch','YdsPerCatch']].sort_values(by=['YdsPerCatch'], ascending=False).head(20))
+    df = df[df['Rush Yds'] >=100]
+    print(df[['name', 'Rec', 'Rush Yds','Targets', 'percentCatch','YdsPerCatch']].sort_values(by=['Rush Yds', 'Targets'], ascending=False).head(20))
     
     #print(len(tpList))
 
