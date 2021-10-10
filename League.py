@@ -24,12 +24,13 @@ from requests.structures import CaseInsensitiveDict
 from Fantasy import *
 import pandas as pd
 import numpy as np
+import time
 
 
 if __name__ == '__main__':
     #To Authenticate
-    # sc = OAuth2(None, None, from_file='oauth2.json')
-    # league = yfa.league.League(sc,'406.l.774934')
+    sc = OAuth2(None, None, from_file='oauth2.json')
+    league = yfa.league.League(sc,'406.l.774934')
 
     # QBFreeAgents = GetFreeAgents(league, "QB")
     # with open("QBFreeAgentSample.json", "w") as file:
@@ -117,11 +118,13 @@ if __name__ == '__main__':
     # leagueStandings = league.standings()
     # pprint(leagueStandings, indent=4)
 
-    # # #Getting league transactions
-    # transactions = league.transactions('drop',count=1)
-    # with open ("lasttransaction.json", "w") as file:
-    #     file.write(json.dumps(transactions, indent=4))
-    # #pprint(transactions, indent=4)
+    # #Getting league transactions
+    transactions = league.transactions('drop',count=5)
+    with open ("lasttransaction.json", "w") as file:
+        file.write(json.dumps(transactions, indent=4))
+    #pprint(transactions, indent=4)
+
+    print(time.time()-36000)
 
     # # #Getting players in waivers
     # dudesInWaiver = league.waivers()
