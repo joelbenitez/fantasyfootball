@@ -25,7 +25,6 @@ from Fantasy import *
 import pandas as pd
 import numpy as np
 import time
-import datetime
 
 
 if __name__ == '__main__':
@@ -119,13 +118,13 @@ if __name__ == '__main__':
     # leagueStandings = league.standings()
     # pprint(leagueStandings, indent=4)
 
-    # # #Getting league transactions
-    # transactions = league.transactions('drop',count=5)
-    # with open ("lasttransaction.json", "w") as file:
-    #     file.write(json.dumps(transactions, indent=4))
-    # #pprint(transactions, indent=4)
+    # #Getting league transactions
+    transactions = league.transactions('drop',count=5)
+    with open ("lasttransaction.json", "w") as file:
+        file.write(json.dumps(transactions, indent=4))
+    #pprint(transactions, indent=4)
 
-    # print(time.time()-36000)
+    print(time.time()-36000)
 
     # # #Getting players in waivers
     # dudesInWaiver = league.waivers()
@@ -136,22 +135,9 @@ if __name__ == '__main__':
     ##Team information, to find your teamID
     #pprint (league.teams())
     #
-    teamID = league.team_key()
-    team = yfa.team.Team(sc, teamID)
-    #pprint(team)
-    #Who are you playing this week?
-    print(team.matchup(5))
-
-    #Get your roster info
-    pprint(team.roster(5), indent=4)
-
-
-    #Attempting to make a desperation change
-    # cd = datetime.date(2021,10,14)
-    # plyrs = [{'player_id':26561, 'selected_position':'BN'}, 
-    #         {'player_id':31074, 'selected_position':'W/R/T'}]
-
-    # team.change_positions(cd,plyrs)
+#     teamID = league.team_key()
+#     team = yfa.team.Team(sc, teamID)
+#     #pprint(team)
 
 # #     # ##Dude to add information
 # #     playerAdd = "Josh Gordon"
